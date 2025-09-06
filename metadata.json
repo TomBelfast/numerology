@@ -1,0 +1,5 @@
+{
+  "name": "Numerology Horoscope AI",
+  "description": "An application that generates personalized yearly, monthly, weekly, daily, and hourly numerology horoscopes based on the user's date and time of birth, powered by AI.",
+  "requestFramePermissions": []
+}
