@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback } from 'react';
 import { HoroscopeType } from './types';
 import { generateHoroscope } from './services/geminiService';
