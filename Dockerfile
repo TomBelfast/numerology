@@ -19,8 +19,9 @@ RUN npm run build
 # Expose port
 EXPOSE 5173
 
-# Set environment variable for production
+# Set environment variables for production
 ENV NODE_ENV=production
+ENV VITE_GEMINI_API_KEY=""
 
 # Start the application
 CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "5173"]

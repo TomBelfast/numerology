@@ -10,11 +10,12 @@ export const generateHoroscope = async (
     type: HoroscopeType
 ): Promise<string> => {
     // Sprawdzamy klucz API w funkcji (runtime), nie na poziomie modułu (build time)
-    if (!process.env.GEMINI_API_KEY) {
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
+    if (!apiKey) {
         throw new Error("GEMINI_API_KEY environment variable not set");
     }
 
-    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+    const ai = new GoogleGenAI({ apiKey });
     
     const prompt = `
         Jesteś światowej klasy numerologiem z wieloletnim doświadczeniem. Twoim zadaniem jest stworzenie spersonalizowanego horoskopu numerologicznego w języku polskim.
