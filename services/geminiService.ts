@@ -2,23 +2,19 @@
 import { GoogleGenAI } from "@google/genai";
 import { HoroscopeType } from '../types';
 
-console.log('🔍 Debug - API Key check:', {
-    hasKey: !!process.env.GEMINI_API_KEY,
-    keyLength: process.env.GEMINI_API_KEY?.length || 0,
-    keyStart: process.env.GEMINI_API_KEY?.substring(0, 10) || 'NOT_FOUND'
-});
-
-if (!process.env.GEMINI_API_KEY) {
-    throw new Error("GEMINI_API_KEY environment variable not set");
-}
-
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+// Sprawdzanie klucza API przeniesione do funkcji (runtime)
 
 export const generateHoroscope = async (
     birthDate: string,
     birthTime: string | null,
     type: HoroscopeType
 ): Promise<string> => {
+    // Sprawdzamy klucz API w funkcji (runtime), nie na poziomie modułu (build time)
+    if (!process.env.GEMINI_API_KEY) {
+        throw new Error("GEMINI_API_KEY environment variable not set");
+    }
+
+    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
     
     const prompt = `
         Jesteś światowej klasy numerologiem z wieloletnim doświadczeniem. Twoim zadaniem jest stworzenie spersonalizowanego horoskopu numerologicznego w języku polskim.
