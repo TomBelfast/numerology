@@ -11,6 +11,11 @@ export const generateHoroscope = async (
 ): Promise<string> => {
     // Sprawdzamy klucz API w funkcji (runtime), nie na poziomie modułu (build time)
     const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
+    console.log('🔑 API Key check:', {
+        hasViteKey: !!import.meta.env.VITE_GEMINI_API_KEY,
+        hasProcessKey: !!process.env.GEMINI_API_KEY,
+        hasAnyKey: !!apiKey
+    });
     if (!apiKey) {
         throw new Error("GEMINI_API_KEY environment variable not set");
     }
