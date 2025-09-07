@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  numerology-app:
+    build: .
+    ports:
+      - "3000:5173"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    env_file:
+      - .env.local
+    container_name: numerology-container
+    restart: unless-stopped
